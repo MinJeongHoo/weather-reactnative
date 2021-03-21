@@ -6,18 +6,18 @@ import axios from 'axios';
 import Weather from './Weather';
 
 
+
+
 const API_KEY = 'c05ee00abf4cb91f51d0eaf2cc5ca501';
 export default class extends React.Component {
   state = {
     isLoading: true
-
   }
   getWeather = async (latitude, longitude) => {
     const { data: { main: { temp }, weather } } = await axios.get(
       `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${API_KEY}`
 
     )
-    console.log(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${API_KEY}`);
     this.setState({ isLoading: false, condition: weather[0].main, temp });
   }
   getLocation = async () => {
@@ -25,7 +25,6 @@ export default class extends React.Component {
       await Location.requestPermissionsAsync();
       const { coords: { latitude, longitude } } = await Location.getCurrentPositionAsync();
       this.getWeather(latitude, longitude);
-      this.setState({ isLoading: false });
     } catch (error) {
       Alert.alert('cant find');
     }
