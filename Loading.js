@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import * as Location from 'expo-location';
+
 export default function Loading() {
     return (<View style={styles.container}>
         <Text style={styles.text}>Getting the fucking weather</Text>
